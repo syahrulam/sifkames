@@ -4,13 +4,15 @@
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
           <a href="#" class="logo d-flex align-items-center">
-            <span class="sitename">Sailor</span>
+            <span class="sitename">FKAM BREBES</span>
           </a>
           <div class="footer-contact pt-3">
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-            <p><strong>Email:</strong> <span>info@example.com</span></p>
+            <p><b>Alamat</b></p>
+            <p>Jl. Taman Siswa, Klp. Sawit, Padasugih, Kec. Brebes, Kabupaten Brebes, Jawa Tengah 52214</p>
+            <p class="mt-2"><strong><b>No. Telepon:</b></strong> <span>0857-4279-4703</span></p>
+            <p class="mt-2"><strong><b>Jam Buka</b></p>
+            <p>Senin - Sabtu:</strong><span> 08.00 - 16.00</span></p>
+            <p class="mt-3"><strong>Email:</strong> <span>info@example.com</span></p>
           </div>
           <div class="social-links d-flex mt-4">
             <a href=""><i class="bi bi-twitter-x"></i></a>
