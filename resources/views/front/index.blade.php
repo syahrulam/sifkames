@@ -12,7 +12,7 @@
     <div class="carousel-item active">
       <img src="{{ asset('assets/img/hero-carousel/hero-carousel-1.jpg') }}" alt="">
       <div class="carousel-container">
-        <h2>Welcome to Sailor<br></h2>
+        <h2>FKAM Brebes Rescue & Peduli<br></h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         <a href="#featured-services" class="btn-get-started">Get Started</a>
       </div>
@@ -55,8 +55,8 @@
 
   <!-- Section Title -->
   <div class="container section-title" data-aos="fade-up">
-    <h2>About</h2>
-    <p>About Us<br></p>
+    <h2>Sejarah</h2>
+    <p>Tentang Kami<br></p>
   </div><!-- End Section Title -->
 
   <div class="container">
@@ -65,21 +65,20 @@
 
       <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua.
+          FKAM (Forum Komunikasi Aktivis Masjid) berdiri sebagai wadah untuk mempererat ukhuwah Islamiyah serta memperkuat peran masjid dalam kehidupan sosial masyarakat. 
+                Sejak didirikan, FKAM terus berkontribusi dalam berbagai kegiatan keislaman, sosial, dan kemanusiaan.
         </p>
-        <ul>
-          <li><i class="bi bi-check2-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-          <li><i class="bi bi-check2-circle"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-          <li><i class="bi bi-check2-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo</span></li>
-        </ul>
       </div>
 
       <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-        <p>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Berawal dari kepedulian terhadap peran strategis masjid, FKAM lahir untuk mengoordinasikan kegiatan yang berorientasi pada dakwah, pendidikan, dan sosial kemasyarakatan. 
+                Dengan semangat kebersamaan, FKAM terus berkembang dan memperluas manfaatnya bagi umat.</p>
         
         <!-- Menggunakan Laravel Route untuk Tautan -->
-        <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+        <a href="{{ route('sejarah') }}" class="read-more">
+    <span>Read More</span>
+    <i class="bi bi-arrow-right"></i>
+</a>
       </div>
 
     </div>
