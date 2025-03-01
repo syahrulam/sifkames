@@ -13,7 +13,7 @@ use App\Http\Controllers\front\SarFkamsController;
 Route::get('/', [HalamanUtamaController::class, 'index']);
 Route::get('/sejarahs', [SejarahController::class, 'index'])->name('sejarah');
 Route::get('/teams', [TeamsController::class, 'index'])->name('teams');
-Route::get('/gebermas', [GebermasController::class, 'index'])->name('gebermas');
+Route::get('/gebermas', [GebermasController::class, 'index'])->name('gebermas.index');
 Route::get('/gebermas/{slug}', [DetailGebermasController::class, 'show'])->name('gebermas.detail');
 Route::get('/muslim_medicals', [MuslimMedicalsController::class, 'index'])->name('muslim_medicals');
 Route::get('/dakwahs', [DakwahsController::class, 'index'])->name('dakwahs');
