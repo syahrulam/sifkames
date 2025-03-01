@@ -2,19 +2,35 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\front\HalamanUtamaController; 
-use App\Http\Controllers\front\SejarahController; 
-use App\Http\Controllers\front\TeamsController;
-use App\Http\Controllers\front\GebermasController;
-use App\Http\Controllers\front\DetailGebermasController;
-use App\Http\Controllers\front\MuslimMedicalsController;
-use App\Http\Controllers\front\DakwahsController;
-use App\Http\Controllers\front\SarFkamsController;
+use App\Http\Controllers\back\DashboardController; 
+
+// --------------------- FrontEnd Website
 
 Route::get('/', [HalamanUtamaController::class, 'index']);
-Route::get('/sejarahs', [SejarahController::class, 'index'])->name('sejarah');
-Route::get('/teams', [TeamsController::class, 'index'])->name('teams');
-Route::get('/gebermas', [GebermasController::class, 'index'])->name('gebermas.index');
-Route::get('/gebermas/{slug}', [DetailGebermasController::class, 'show'])->name('gebermas.detail');
-Route::get('/muslim_medicals', [MuslimMedicalsController::class, 'index'])->name('muslim_medicals');
-Route::get('/dakwahs', [DakwahsController::class, 'index'])->name('dakwahs');
-Route::get('/sar_fkams', [SarFkamsController::class, 'index'])->name('sar_fkams');
+
+// Menu Dakwah
+Route::get('/dakwah', [HalamanUtamaController::class, 'dakwah']);
+
+// Menu Gebermas
+Route::get('/gebermas', [HalamanUtamaController::class, 'gebermas'])->name('gebermas');
+
+Route::get('/gebermas/{id}', [HalamanUtamaController::class, 'gebermasdetail'])->name('gebermas.detail');
+
+// Menu Muslim Medical
+Route::get('/muslim-medical', [HalamanUtamaController::class, 'muslimMedical']);
+
+// Menu Sar Fkam
+Route::get('/sar-fkam', [HalamanUtamaController::class, 'sarFkam']);
+
+// Menu Sejarah
+Route::get('/sejarah', [HalamanUtamaController::class, 'sejarah'])->name('sejarah');
+
+// Menu Team
+Route::get('/team', [HalamanUtamaController::class, 'team']);
+
+// --------------------- FrontEnd Website End
+
+// --------------------- BackEnd Website
+Route::get('/admin', [DashboardController::class, 'index']);
+
+// --------------------- BackEnd Website End
