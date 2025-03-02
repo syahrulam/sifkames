@@ -29,6 +29,17 @@
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
 
-        <a class="btn-getstarted" href="{{ url('/about') }}">Get Started</a>
+        <!-- Tombol Login, Register & Logout -->
+        <div class="auth-buttons">
+            @guest
+                <a class="btn btn-outline-primary me-2" href="{{ route('register') }}">Register</a>
+                <a class="btn btn-primary" href="{{ route('login') }}">Login</a>
+            @else
+                <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+            @endguest
+        </div>
     </div>
 </header>

@@ -9,10 +9,16 @@ class Gebermas extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'slug', 'content', 'image', 'date'];
-
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+    protected $table = 'gebermas';
+    
+    protected $fillable = [
+        'title',
+        'slug',
+        'content',
+        'image',
+        'date',
+        'category',
+        'admin',
+    ];
 }
+

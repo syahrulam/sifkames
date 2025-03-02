@@ -10,6 +10,8 @@
     <ul class="sidebar-menu">
         <li class="menu-header">a</li>
         <li class=""><a class="nav-link" href="#"><i class="fas fa-list"></i> <span>Dashboard</span></a></li>
+        <!-- Menu Gebermas -->
+        <li><a class="nav-link" href="{{ route('admin.gebermas.index') }}"><i class="fas fa-list"></i> <span>Gebermas</span></a></li>
     </ul>
 
 </aside>
