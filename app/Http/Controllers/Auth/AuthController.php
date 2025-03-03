@@ -40,24 +40,32 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    // Proses register
-    public function register(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+// Proses register
+public function register(Request $request)
+{
+    // Validate input data
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:6|confirmed',
+        'role' => 'required|string|in:admin,donatur,relawan', // Ensure role is valid
+    ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+    // Create user
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+        'role' => $request->role,  // Set the user's role based on the selection
+    ]);
 
-        Auth::login($user); // Auto login setelah register
-        return redirect('/admin'); // Redirect ke halaman admin
-    }
+    // Auto login after registration
+    Auth::login($user);
+
+    // Redirect to the appropriate page
+    return redirect()->route('admin.dashboard');  // Change this to wherever you want to redirect
+}
+
 
     // Logout user
     public function logout(Request $request)

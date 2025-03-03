@@ -52,6 +52,14 @@
                     <input type="password" class="form-control" name="password_confirmation" required>
                 </div>
 
+                <div class="mb-3">
+                    <label for="role" class="form-label">Role</label>
+                    <select class="form-control" name="role" required>
+                        <option value="relawan">Relawan</option>
+                        <option value="donatur">Donatur</option>
+                    </select>
+                </div>
+
                 <button type="submit" class="btn btn-primary w-100">Register</button>
             </form>
 
