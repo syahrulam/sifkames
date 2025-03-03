@@ -15,7 +15,7 @@
                     <div class="col-md-6 mb-4">
                         <div class="card h-100 shadow-lg border-0" style="transition: transform 0.2s, box-shadow 0.2s;">
                             <a href="{{ route('gebermas.detail', ['id' => $a->id]) }}" class="text-decoration-none text-dark">
-                                <img src="{{ asset($a->image) }}" class="card-img-top" alt="{{ $a->title }}">
+                                <img src="{{ asset('storage/' . $a->image) }}" class="card-img-top" alt="{{ $a->title }}">
                                 <div class="card-body">
                                     <span class="text-primary fw-bold">Gebermas</span>
                                     <h5 class="card-title mt-2">{{ $a->title }}</h5>

@@ -2,16 +2,17 @@
 
 @section('content')
 <div class="container mt-4">
-    <h2>Daftar Kegiatan Gebermas</h2>
+    <h2 class="mb-4">Daftar Kegiatan Gebermas</h2>
 
+    <!-- Notifikasi Sukses -->
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
     <a href="{{ route('admin.gebermas.create') }}" class="btn btn-primary mb-3">Tambah Kegiatan</a>
 
-    <table class="table table-bordered">
-        <thead>
+    <table class="table table-striped table-bordered">
+        <thead class="table-primary text-dark">
             <tr>
                 <th>No</th>
                 <th>Judul</th>
@@ -21,21 +22,26 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($data as $item)
+            @foreach($data as $key => $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->title }}</td>
-                    <td>{{ $item->date }}</td>
+                    <td>{{ \Carbon\Carbon::parse($item->date)->format('d M Y') }}</td>
                     <td>
-                        <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" width="100">
+                        <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" class="img-thumbnail" width="100">
                     </td>
                     <td>
-                        <a href="{{ route('admin.gebermas.edit', $item->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('admin.gebermas.destroy', $item->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                        </form>
+                        <div class="btn-group">
+                            <!-- Tombol Edit -->
+                            <a href="{{ route('admin.gebermas.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            
+                            <!-- Tombol Hapus -->
+                            <form action="{{ route('admin.gebermas.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus kegiatan ini?')" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach
