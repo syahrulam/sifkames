@@ -63,7 +63,7 @@ public function register(Request $request)
     Auth::login($user);
 
     // Redirect to the appropriate page
-    return redirect()->route('admin.dashboard');  // Change this to wherever you want to redirect
+    return redirect()->route('admin');  // Change this to wherever you want to redirect
 }
 
 

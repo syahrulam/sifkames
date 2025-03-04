@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\front\HalamanUtamaController;
 use App\Http\Controllers\back\DashboardController;
 use App\Http\Controllers\back\GebermasController;
+use App\Http\Controllers\back\DakwahController;
+use App\Http\Controllers\back\MuslimMedicalController;
+use App\Http\Controllers\back\SarfkamController;
 use App\Http\Controllers\Auth\AuthController;
 
 // --------------------- FrontEnd Website
@@ -40,9 +43,41 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         'store' => 'admin.gebermas.store',
         'edit' => 'admin.gebermas.edit',
         'update' => 'admin.gebermas.update',
-        'destroy' => 'admin.gebermas.destroy',
+        'destroy' => 'admin.gebermas.destroy', // Make sure this is here
     ]);
 });
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::resource('dakwah', DakwahController::class)->names([
+        'index' => 'admin.dakwah.index',
+        'create' => 'admin.dakwah.create',
+        'store' => 'admin.dakwah.store',
+        'edit' => 'admin.dakwah.edit',
+        'update' => 'admin.dakwah.update',
+        'destroy' => 'admin.dakwah.destroy',
+    ]);
+});
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::resource('muslim_medical', MuslimMedicalController::class)->names([
+        'index' => 'admin.muslim_medical.index',
+        'create' => 'admin.muslim_medical.create',
+        'store' => 'admin.muslim_medical.store',
+        'edit' => 'admin.muslim_medical.edit',
+        'update' => 'admin.muslim_medical.update',
+        'destroy' => 'admin.muslim_medical.destroy',
+    ]);
+});
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::resource('sarfkam', SarfkamController::class)->names([
+        'index' => 'admin.sarfkam.index',
+        'create' => 'admin.sarfkam.create',
+        'store' => 'admin.sarfkam.store',
+        'edit' => 'admin.sarfkam.edit',
+        'update' => 'admin.sarfkam.update',
+        'destroy' => 'admin.sarfkam.destroy',
+    ]);
+});
+
+
 
 // --------------------- Login & Register Routes
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');

@@ -16,7 +16,16 @@
   <link rel="stylesheet" href="{{ asset('assets/admin/modules/owlcarousel2/dist/assets/owl.theme.default.min.css') }}">
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Start GA -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'UA-94034622-3');
+</script>
+<!-- /END GA --></head>
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('assets/admin/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/admin/css/components.css') }}">
@@ -70,22 +79,6 @@
   <script src="{{ asset('assets/admin/js/custom.js') }}"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Tambahkan Script Modal Fix -->
-  <script>
-    $(document).ready(function() {
-        // Mencegah modal tertutup otomatis
-        $('.modal').modal({
-            backdrop: 'static',
-            keyboard: false
-        });
-
-        // Cek apakah modal tertutup oleh event lain
-        $('.modal').on('hidden.bs.modal', function (e) {
-            console.log('Modal tertutup');
-        });
-    });
-  </script>
 
 </body>
 </html>

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\back;
+namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class SarfkamController extends Controller
+class MuslimMedicalController extends Controller
 {
     /**
      * Display a listing of the resource.
