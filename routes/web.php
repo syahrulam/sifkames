@@ -15,7 +15,7 @@ use App\Http\Controllers\Auth\AuthController;
 Route::get('/', [HalamanUtamaController::class, 'index']);
 
 // Menu Dakwah
-Route::get('/dakwah', [HalamanUtamaController::class, 'dakwah']);
+Route::get('/dakwah', [HalamanUtamaController::class, 'dakwah'])->name('dakwah');
 
 // Menu Gebermas
 Route::get('/gebermas', [HalamanUtamaController::class, 'gebermas'])->name('gebermas');

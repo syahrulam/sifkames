@@ -5,6 +5,7 @@ namespace App\Http\Controllers\front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Gebermas;
+use App\Models\Dakwah;
 
 class HalamanUtamaController extends Controller
 {
@@ -14,9 +15,11 @@ class HalamanUtamaController extends Controller
     }
 
     public function dakwah()
-    {
-        return view('frontend.dakwah.index');
-    }
+{
+    $dakwah = Dakwah::all(); // Mengambil semua data dari tabel dakwah
+    return view('frontend.dakwah.index', compact('dakwah'));
+}
+
 
     public function gebermas()
     {
