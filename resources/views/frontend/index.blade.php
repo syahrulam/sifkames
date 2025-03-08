@@ -75,9 +75,6 @@
                 Dengan semangat kebersamaan, FKAM terus berkembang dan memperluas manfaatnya bagi umat.</p>
         
         <a href="{{ route('sejarah') }}" class="read-more">Read More</a>
-    <span>Read More</span>
-    <i class="bi bi-arrow-right"></i>
-</a>
       </div>
 
     </div>

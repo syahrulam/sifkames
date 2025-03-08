@@ -9,9 +9,6 @@
                     <h4>Daftar Kegiatan Dakwah</h4>
                 </div>
                 <div class="card-body">
-
-
-
                     <!-- Tombol Tambah Kegiatan -->
                     <div class="d-flex justify-content-end mb-3">
                         <a href="{{ route('admin.dakwah.create') }}" class="btn btn-primary">Tambah Kegiatan</a>

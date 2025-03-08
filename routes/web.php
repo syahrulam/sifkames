@@ -23,7 +23,8 @@ Route::get('/gebermas', [HalamanUtamaController::class, 'gebermas'])->name('gebe
 Route::get('/gebermas/{id}', [HalamanUtamaController::class, 'gebermasdetail'])->name('gebermas.detail');
 
 // Menu Muslim Medical
-Route::get('/muslim-medical', [HalamanUtamaController::class, 'muslimMedical']);
+Route::get('/muslim-medical', [HalamanUtamaController::class, 'muslimMedical'])->name('muslim_medical');
+Route::get('/muslim-medical/{id}', [HalamanUtamaController::class, 'muslimMedicalDetail'])->name('muslim_medical.detail');
 
 // Menu Sar Fkam
 Route::get('/sar-fkam', [HalamanUtamaController::class, 'sarFkam']);
@@ -52,6 +53,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         'index' => 'admin.dakwah.index',
         'create' => 'admin.dakwah.create',
         'store' => 'admin.dakwah.store',
+        'show' => 'admin.dakwah.show',
         'edit' => 'admin.dakwah.edit',
         'update' => 'admin.dakwah.update',
         'destroy' => 'admin.dakwah.destroy',

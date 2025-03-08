@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Gebermas;
 use App\Models\Dakwah;
+use App\Models\MuslimMedical;
 
 class HalamanUtamaController extends Controller
 {
@@ -43,7 +44,14 @@ class HalamanUtamaController extends Controller
     // Halaman Muslim Medical
     public function muslimMedical()
     {
-        return view('frontend.muslim_medical.index');
+        $kegiatan = MuslimMedical::all(); // Mengambil semua kegiatan dari tabel MuslimMedical
+        return view('frontend.muslim_medical.index', compact('kegiatan'));
+    }
+
+    public function muslimMedicalDetail($id)
+    {
+        $kegiatan = MuslimMedical::findOrFail($id); // Mengambil detail kegiatan berdasarkan ID
+        return view('frontend.muslim_medical.detail', compact('kegiatan'));
     }
 
     // Halaman SAR FKAM

@@ -3,15 +3,11 @@
 @section('content')
 <div class="container-fluid px-0">
     <!-- Header dengan gambar background -->
-    <div class="position-relative" style="height: 350px; background: url('{{ asset($dakwah->image ?? 'images/default.jpg') }}') center/cover;">
+    <div class="position-relative" style="height: 350px; background: url('{{ asset($kegiatan->image) }}') center/cover;">
         <div class="overlay position-absolute w-100 h-100" style="background: rgba(0, 0, 0, 0.5);"></div>
         <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
-            <h1 class="fw-bold">{{ $dakwah->title }}</h1>
-            <p class="mt-2">
-                <i class="bi bi-person"></i> Admin &nbsp; | &nbsp; 
-                <i class="bi bi-calendar"></i> 
-                {{ isset($dakwah->date) ? \Carbon\Carbon::parse($dakwah->date)->format('d M Y') : 'Tanggal tidak tersedia' }}
-            </p>
+            <h1 class="fw-bold">{{ $kegiatan->title }}</h1>
+            <p class="mt-2"><i class="bi bi-person"></i> Admin &nbsp; | &nbsp; <i class="bi bi-calendar"></i> {{ \Carbon\Carbon::parse($kegiatan->date)->format('d M Y') }}</p>
         </div>
     </div>
 
@@ -31,19 +27,19 @@
 
         <!-- Gambar Setelah Statistik -->
         <div class="text-center my-4">
-            <img src="{{ asset($dakwah->image ?? 'images/default.jpg') }}" class="img-fluid rounded shadow-lg" alt="{{ $dakwah->title }}">
+            <img src="{{ asset($kegiatan->image) }}" class="img-fluid rounded shadow-lg" alt="{{ $kegiatan->title }}">
         </div>
 
         <!-- Konten Detail -->
         <div class="mx-auto" style="max-width: 800px;">
             <p class="lead text-justify" style="line-height: 1.8;">
-                {!! isset($dakwah->content) ? nl2br(e($dakwah->content)) : 'Tidak ada konten yang tersedia.' !!}
+                {{ $kegiatan->content }}
             </p>
         </div>
 
         <!-- Tombol Kembali -->
-         <div class="text-center mt-5 mb-5">
-            <a href="{{ route('dakwah') }}" class="btn btn-primary px-4 py-2 rounded-pill shadow">
+        <div class="text-center mt-5 mb-5">
+            <a href="{{ route('muslim_medical') }}" class="btn btn-primary px-4 py-2 rounded-pill shadow">
                 <i class="bi bi-arrow-left"></i> Kembali
             </a>
         </div>

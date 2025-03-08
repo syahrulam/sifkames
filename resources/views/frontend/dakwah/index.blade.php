@@ -2,24 +2,30 @@
 
 @section('content')
 <div class="container mt-4">
+    <!-- Judul Halaman -->
     <h1 class="text-center fw-bold position-relative pb-2"
         style="border-bottom: 4px solid #007bff; display: inline-block; padding-bottom: 10px;">
         Dakwah
     </h1>
 
     <div class="row mt-4">
-        <!-- Kolom Kiri: Card Dakwah (Lebar 8 kolom) -->
+        <!-- Kolom Kiri: Daftar Dakwah -->
         <div class="col-md-8">
             <div class="row">
                 @foreach ($dakwah as $d)
                     <div class="col-md-6 mb-4">
-                        <div class="card h-100 shadow-lg border-0" style="transition: transform 0.2s, box-shadow 0.2s;">
+                        <div class="card h-100 shadow-lg border-0"
+                            style="transition: transform 0.2s, box-shadow 0.2s;">
                             <a href="{{ route('dakwah.detail', ['id' => $d->id]) }}" class="text-decoration-none text-dark">
-                                <img src="{{ asset('storage/' . $d->image) }}" class="card-img-top" alt="{{ $d->title }}">
+                                <!-- Gambar Dakwah -->
+                                <img src="{{ $d->image ? asset('storage/' . $d->image) : asset('images/default.jpg') }}"
+                                    class="card-img-top img-fluid" 
+                                    style="height: 200px; object-fit: cover;" 
+                                    alt="{{ $d->title }}">
                                 <div class="card-body">
                                     <span class="text-primary fw-bold">Dakwah</span>
                                     <h5 class="card-title mt-2">{{ $d->title }}</h5>
-                                    <p class="card-text">{{ Str::limit($d->content, 100) }}</p>
+                                    <p class="card-text">{{ Str::limit(strip_tags($d->content), 100) }}</p>
                                     <hr>
                                     <div class="d-flex justify-content-between text-muted small">
                                         <span><i class="bi bi-person"></i> {{ $d->admin }}</span>
@@ -33,7 +39,7 @@
             </div>
         </div>
 
-        <!-- Kolom Kanan: Sidebar (Lebar 4 kolom) -->
+        <!-- Kolom Kanan: Sidebar -->
         <div class="col-md-4">
             <!-- Card Pencarian -->
             <div class="card mb-4 shadow-sm">

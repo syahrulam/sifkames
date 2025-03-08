@@ -94,4 +94,16 @@ class DakwahController extends Controller
 
         return redirect()->route('admin.dakwah.index')->with('success', 'Kegiatan Dakwah berhasil dihapus');
     }
+
+    public function list()
+    {
+        $dakwah = Dakwah::latest()->get();
+        return view('frontend.dakwah.index', compact('dakwah'));
+    }
+
+    public function show($id)
+    {
+        $dakwah = Dakwah::findOrFail($id);
+        return view('frontend.dakwah.detail', compact('dakwah'));
+    }
 }
