@@ -1,0 +1,52 @@
+@extends('layoutfrontend.master')
+
+@section('content')
+<div class="container-fluid px-0">
+    <!-- Header dengan gambar background -->
+    <div class="position-relative" style="height: 350px; background: url('{{ asset($dakwah->image ?? 'images/default.jpg') }}') center/cover;">
+        <div class="overlay position-absolute w-100 h-100" style="background: rgba(0, 0, 0, 0.5);"></div>
+        <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
+            <h1 class="fw-bold">{{ $dakwah->title }}</h1>
+            <p class="mt-2">
+                <i class="bi bi-person"></i> Admin &nbsp; | &nbsp; 
+                <i class="bi bi-calendar"></i> 
+                {{ isset($dakwah->date) ? \Carbon\Carbon::parse($dakwah->date)->format('d M Y') : 'Tanggal tidak tersedia' }}
+            </p>
+        </div>
+    </div>
+
+    <!-- Bagian Konten -->
+    <div class="container mt-4">
+        <!-- Bagikan ke Sosial Media -->
+        <div class="d-flex justify-content-center mb-3">
+            <a href="#" class="btn btn-primary mx-1"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="btn btn-info mx-1"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="btn btn-dark mx-1"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="btn btn-success mx-1"><i class="bi bi-whatsapp"></i></a>
+            <a href="#" class="btn btn-secondary mx-1"><i class="bi bi-share"></i></a>
+        </div>
+
+        <!-- Jumlah Dilihat -->
+        <p class="text-center text-muted"><i class="bi bi-bar-chart"></i> 14 total dilihat</p>
+
+        <!-- Gambar Setelah Statistik -->
+        <div class="text-center my-4">
+            <img src="{{ asset($dakwah->image ?? 'images/default.jpg') }}" class="img-fluid rounded shadow-lg" alt="{{ $dakwah->title }}">
+        </div>
+
+        <!-- Konten Detail -->
+        <div class="mx-auto" style="max-width: 800px;">
+            <p class="lead text-justify" style="line-height: 1.8;">
+                {!! isset($dakwah->content) ? nl2br(e($dakwah->content)) : 'Tidak ada konten yang tersedia.' !!}
+            </p>
+        </div>
+
+        <!-- Tombol Kembali -->
+         <div class="text-center mt-5 mb-5">
+            <a href="{{ route('dakwah.index') }}" class="btn btn-primary px-4 py-2 rounded-pill shadow">
+                <i class="bi bi-arrow-left"></i> Kembali
+            </a>
+        </div>
+    </div>
+</div>
+@endsection

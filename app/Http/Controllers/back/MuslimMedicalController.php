@@ -1,65 +1,97 @@
 <?php
 
-namespace App\Http\Controllers\Back;
+namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\MuslimMedical;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class MuslimMedicalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $data = MuslimMedical::latest()->get();
+        return view('backend.muslim_medical.index', compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('backend.muslim_medical.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'date' => 'required|date',
+            'content' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $imagePath = $request->file('image')->store('images/muslim_medical', 'public');
+
+        MuslimMedical::create([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'date' => $request->date,
+            'content' => $request->content,
+            'image' => $imagePath,
+            'category' => 'Muslim Medical',
+            'admin' => auth()->user()->name ?? 'Admin',
+        ]);
+
+        return redirect()->route('admin.muslim_medical.index')->with('success', 'Kegiatan Muslim Medical berhasil ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit($id)
     {
-        //
+        $data = MuslimMedical::findOrFail($id);
+        return view('backend.muslim_medical.edit', compact('data'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'date' => 'required|date',
+            'content' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $data = MuslimMedical::findOrFail($id);
+
+        if ($request->hasFile('image')) {
+            if ($data->image) {
+                Storage::disk('public')->delete($data->image);
+            }
+            $imagePath = $request->file('image')->store('images/muslim_medical', 'public');
+        } else {
+            $imagePath = $data->image;
+        }
+
+        $data->update([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'date' => $request->date,
+            'content' => $request->content,
+            'image' => $imagePath,
+            'category' => 'Muslim Medical',
+            'admin' => auth()->user()->name ?? 'Admin',
+        ]);
+
+        return redirect()->route('admin.muslim_medical.index')->with('success', 'Kegiatan Muslim Medical berhasil diperbarui');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy($id)
     {
-        //
-    }
+        $data = MuslimMedical::findOrFail($id);
+        if ($data->image) {
+            Storage::disk('public')->delete($data->image);
+        }
+        $data->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('admin.muslim_medical.index')->with('success', 'Kegiatan Muslim Medical berhasil dihapus');
     }
 }

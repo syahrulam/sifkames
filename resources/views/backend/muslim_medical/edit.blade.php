@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-4">
-    <h1 class="text-center">Edit Kegiatan Gebermas</h1>
+    <h1 class="text-center">Edit Kegiatan Muslim Medical</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -14,10 +14,11 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.gebermas.update', $data->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.muslim_medical.update', $data->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
+        <!-- Input Judul -->
         <div class="mb-3">
             <label for="title" class="form-label">Judul</label>
             <input type="text" class="form-control @error('title') is-invalid @enderror" 
@@ -27,6 +28,7 @@
             @enderror
         </div>
 
+        <!-- Input Tanggal -->
         <div class="mb-3">
             <label for="date" class="form-label">Tanggal</label>
             <input type="date" class="form-control @error('date') is-invalid @enderror" 
@@ -36,6 +38,7 @@
             @enderror
         </div>
 
+        <!-- Input Deskripsi -->
         <div class="mb-3">
             <label for="content" class="form-label">Deskripsi</label>
             <textarea class="form-control @error('content') is-invalid @enderror" 
@@ -45,6 +48,7 @@
             @enderror
         </div>
 
+        <!-- Input Gambar -->
         <div class="mb-3">
             <label for="image" class="form-label">Gambar</label>
             <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
@@ -60,8 +64,9 @@
             @endif
         </div>
 
+        <!-- Tombol Update & Batal -->
         <button type="submit" class="btn btn-primary">Update</button>
-        <a href="{{ route('admin.gebermas.index') }}" class="btn btn-secondary">Batal</a>
+        <a href="{{ route('admin.muslim_medical.index') }}" class="btn btn-secondary">Batal</a>
     </form>
 </div>
 @endsection

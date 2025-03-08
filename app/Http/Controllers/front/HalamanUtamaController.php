@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\front;
+namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -14,13 +14,20 @@ class HalamanUtamaController extends Controller
         return view('frontend.index');
     }
 
+    // Halaman Dakwah
     public function dakwah()
-{
-    $dakwah = Dakwah::all(); // Mengambil semua data dari tabel dakwah
-    return view('frontend.dakwah.index', compact('dakwah'));
-}
+    {
+        $dakwah = Dakwah::all(); // Mengambil semua data dari tabel Dakwah
+        return view('frontend.dakwah.index', compact('dakwah'));
+    }
 
+    public function dakwahdetail($id)
+    {
+        $dakwah = Dakwah::findOrFail($id); // Gunakan $dakwah agar konsisten
+        return view('frontend.dakwah.detail', compact('dakwah'));
+    }
 
+    // Halaman Gebermas
     public function gebermas()
     {
         $aktivitas = Gebermas::all();
@@ -33,23 +40,25 @@ class HalamanUtamaController extends Controller
         return view('frontend.gebermas.detail', compact('aktivitas'));
     }
 
-
+    // Halaman Muslim Medical
     public function muslimMedical()
     {
         return view('frontend.muslim_medical.index');
     }
 
+    // Halaman SAR FKAM
     public function sarFkam()
     {
         return view('frontend.sar_fkam.index');
     }
 
+    // Halaman Sejarah
     public function sejarah()
     {
         return view('frontend.sejarah.index');
     }
 
-
+    // Halaman Tim
     public function team()
     {
         return view('frontend.team.index');

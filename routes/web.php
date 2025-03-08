@@ -16,6 +16,7 @@ Route::get('/', [HalamanUtamaController::class, 'index']);
 
 // Menu Dakwah
 Route::get('/dakwah', [HalamanUtamaController::class, 'dakwah'])->name('dakwah');
+Route::get('/dakwah/{id}', [HalamanUtamaController::class, 'dakwahdetail'])->name('dakwah.detail');
 
 // Menu Gebermas
 Route::get('/gebermas', [HalamanUtamaController::class, 'gebermas'])->name('gebermas');
