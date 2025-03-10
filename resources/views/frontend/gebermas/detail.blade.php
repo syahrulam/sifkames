@@ -27,13 +27,13 @@
 
         <!-- Gambar Setelah Statistik -->
         <div class="text-center my-4">
-            <img src="{{ asset($aktivitas->image) }}" class="img-fluid rounded shadow-lg" alt="{{ $aktivitas->title }}">
+           <img src="{{ asset('storage/' . $aktivitas->image) }}" class="rounded shadow-lg" alt="{{ $aktivitas->title }}" style="max-width: 60%; height: auto; display: block; margin: 0 auto;">
         </div>
 
         <!-- Konten Detail -->
         <div class="mx-auto" style="max-width: 800px;">
             <p class="lead text-justify" style="line-height: 1.8;">
-                {{ $aktivitas->content }}
+                {!! $aktivitas->content !!}
             </p>
         </div>
 

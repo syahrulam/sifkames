@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid px-0">
     <!-- Header dengan gambar background -->
-    <div class="position-relative" style="height: 350px; background: url('{{ asset($kegiatan->image) }}') center/cover;">
+    <div class="position-relative" style="height: 350px; background: url('{{ asset( 'storage/' . $kegiatan->image) }}') center/cover;">
         <div class="overlay position-absolute w-100 h-100" style="background: rgba(0, 0, 0, 0.5);"></div>
         <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
             <h1 class="fw-bold">{{ $kegiatan->title }}</h1>
@@ -27,13 +27,13 @@
 
         <!-- Gambar Setelah Statistik -->
         <div class="text-center my-4">
-            <img src="{{ asset($kegiatan->image) }}" class="img-fluid rounded shadow-lg" alt="{{ $kegiatan->title }}">
+            <img src="{{ asset('storage/' . $kegiatan->image) }}" class="rounded shadow-lg" alt="{{ $kegiatan->title }}" style="max-width: 60%; height: auto; display: block; margin: 0 auto;">
         </div>
 
         <!-- Konten Detail -->
         <div class="mx-auto" style="max-width: 800px;">
             <p class="lead text-justify" style="line-height: 1.8;">
-                {{ $kegiatan->content }}
+                {!! $kegiatan->content !!}
             </p>
         </div>
 
