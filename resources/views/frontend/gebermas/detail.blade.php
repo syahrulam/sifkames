@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid px-0">
     <!-- Header dengan gambar background -->
-    <div class="position-relative" style="height: 350px; background: url('{{ asset($aktivitas->image) }}') center/cover;">
+    <div class="position-relative" style="height: 350px; background: url('{{ asset('storage/' . $aktivitas->image) }}') center/cover;">
         <div class="overlay position-absolute w-100 h-100" style="background: rgba(0, 0, 0, 0.5);"></div>
         <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
             <h1 class="fw-bold">{{ $aktivitas->title }}</h1>

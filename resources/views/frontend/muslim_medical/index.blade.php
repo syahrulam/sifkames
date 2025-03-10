@@ -13,8 +13,8 @@
             <div class="row">
                 @foreach ($kegiatan as $item)
                     <div class="col-md-6 mb-4">
-                        <div class="card h-100 shadow-lg border-0" style="transition: transform 0.2s, box-shadow 0.2s;">
-                            <a href="{{ route('muslim_medical.detail', ['id' => $item->id]) }}" class="text-decoration-none text-dark">
+                        <div class="card h-100 shadow-lg border-0" style="transition: transform 0.2s, box-shadow 0.2s;">  
+                        <a href="{{ route('muslim_medical.detail', ['id' => $item->id]) }}" class="text-decoration-none text-dark">
                                 <img src="{{ asset('storage/' . $item->image) }}" class="card-img-top" alt="{{ $item->title }}">
                                 <div class="card-body">
                                     <span class="text-primary fw-bold">Muslim Medical</span>

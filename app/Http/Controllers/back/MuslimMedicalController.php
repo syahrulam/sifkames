@@ -66,7 +66,7 @@ class MuslimMedicalController extends Controller
             if ($data->image) {
                 Storage::disk('public')->delete($data->image);
             }
-            $imagePath = $request->file('image')->store('images/muslim_medical', 'public');
+            $imagePath = $request->file('image')->store('images', 'public');
         } else {
             $imagePath = $data->image;
         }
