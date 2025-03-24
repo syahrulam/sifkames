@@ -21,7 +21,7 @@
                         <li><a href="{{ url('/sar-fkam') }}">SAR FKAM</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ url('/portfolio') }}">Portfolio</a></li>
+                <li><a href="{{ url('/donasi') }}">Donasi</a></li>
                 <li><a href="{{ url('/pricing') }}">Pricing</a></li>
                 <li><a href="{{ url('/blog') }}">Blog</a></li>
                 <li><a href="{{ url('/contact') }}">Contact</a></li>

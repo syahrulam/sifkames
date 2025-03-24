@@ -6,13 +6,49 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Gebermas;
 use App\Models\Dakwah;
+use App\Models\Donasi;
+use App\Services\MidtransService;
 use App\Models\MuslimMedical;
 
 class HalamanUtamaController extends Controller
 {
+    
     public function index()
     {
         return view('frontend.index');
+    }
+
+    protected $midtransService;
+
+    public function __construct(MidtransService $midtransService)
+    {
+        $this->midtransService = $midtransService;
+    }
+
+    public function donasi()
+    {
+        $donasi = Donasi::all(); 
+        return view('frontend.donasi.index', compact('donasi'));
+    }
+
+    public function donasikan(Request $request)
+    {
+        $request->validate([
+            'nama_pemdonasi' => 'required|string',
+            'jumlah_donasi' => 'required|numeric',
+        ]);
+
+        // Simpan data donasi
+        $donasi = Donasi::create([
+            'nama_pemdonasi' => $request->nama_pemdonasi,
+            'jumlah_donasi' => $request->jumlah_donasi,
+            'status' => 'pending',
+        ]);
+
+        // Buat transaksi dengan Midtrans
+        $snapToken = $this->midtransService->createTransaction($donasi);
+
+        return view('frontend.donasi.payment', compact('snapToken', 'donasi'));
     }
 
     // Halaman Dakwah

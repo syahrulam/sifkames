@@ -9,10 +9,39 @@ use App\Http\Controllers\back\DakwahController;
 use App\Http\Controllers\back\MuslimMedicalController;
 use App\Http\Controllers\back\SarfkamController;
 use App\Http\Controllers\Auth\AuthController;
+use Midtrans\Notification;
 
 // --------------------- FrontEnd Website
 
 Route::get('/', [HalamanUtamaController::class, 'index']);
+
+// Menu Donasi
+Route::get('/donasi', [HalamanUtamaController::class, 'donasi'])->name('donasi');
+Route::post('/donasikan', [HalamanUtamaController::class, 'donasikan'])->name('donasi.proses');
+Route::post('/midtrans-notification', function () {
+    $notif = new Notification();
+
+    $status = $notif->transaction_status;
+    $orderId = $notif->order_id;
+    $donasi = Donasi::where('order_id', $orderId)->first();
+
+    if ($donasi) {
+        switch ($status) {
+            case 'success':
+                $donasi->status = 'success';
+                break;
+            case 'pending':
+                $donasi->status = 'pending';
+                break;
+            case 'failure':
+                $donasi->status = 'failed';
+                break;
+        }
+        $donasi->save();
+    }
+
+    return response()->json(['status' => 'received']);
+});
 
 // Menu Dakwah
 Route::get('/dakwah', [HalamanUtamaController::class, 'dakwah'])->name('dakwah');
