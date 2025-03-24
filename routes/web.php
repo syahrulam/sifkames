@@ -15,9 +15,13 @@ use Midtrans\Notification;
 
 Route::get('/', [HalamanUtamaController::class, 'index']);
 
-// Menu Donasi
-Route::get('/donasi', [HalamanUtamaController::class, 'donasi'])->name('donasi');
-Route::post('/donasikan', [HalamanUtamaController::class, 'donasikan'])->name('donasi.proses');
+// Menu Donasi (Dibatasi untuk donatur)
+Route::middleware(['auth', 'donatur'])->group(function () {
+    Route::get('/donasi', [HalamanUtamaController::class, 'donasi'])->name('donasi');
+    Route::post('/donasikan', [HalamanUtamaController::class, 'donasikan'])->name('donasi.proses');
+});
+
+// Midtrans Notification
 Route::post('/midtrans-notification', function () {
     $notif = new Notification();
 
