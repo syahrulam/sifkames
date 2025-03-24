@@ -26,7 +26,17 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/admin'); // Redirect ke halaman admin
+
+            // Redirect berdasarkan role
+            if (Auth::user()->role == 'admin') {
+                return redirect()->route('admin'); // Pastikan rute ini benar
+            } elseif (Auth::user()->role == 'donatur') {
+                return redirect()->route('donasi'); // Redirect ke halaman donasi
+            } elseif (Auth::user()->role == 'relawan') {
+                return redirect()->route('relawan'); // Sesuaikan dengan kebutuhan
+            }
+
+            return redirect('/'); // Redirect default jika tidak ada role yang cocok
         }
 
         return back()->withErrors([
@@ -40,32 +50,39 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-// Proses register
-public function register(Request $request)
-{
-    // Validate input data
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users',
-        'password' => 'required|string|min:6|confirmed',
-        'role' => 'required|string|in:admin,donatur,relawan', // Ensure role is valid
-    ]);
+    // Proses register
+    public function register(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+            'role' => 'required|string|in:admin,donatur,relawan', // Pastikan role valid
+        ]);
 
-    // Create user
-    $user = User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-        'role' => $request->role,  // Set the user's role based on the selection
-    ]);
+        // Buat user baru
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => $request->role, // Simpan role pengguna
+        ]);
 
-    // Auto login after registration
-    Auth::login($user);
+        // Auto login setelah registrasi
+        Auth::login($user);
 
-    // Redirect to the appropriate page
-    return redirect()->route('admin');  // Change this to wherever you want to redirect
-}
+        // Redirect sesuai role
+        if ($user->role == 'admin') {
+            return redirect()->route('admin');
+        } elseif ($user->role == 'donatur') {
+            return redirect()->route('donasi'); // Arahkan ke halaman donasi
+        } elseif ($user->role == 'relawan') {
+            return redirect()->route('relawan');
+        }
 
+        return redirect('/'); // Default jika tidak ada role yang cocok
+    }
 
     // Logout user
     public function logout(Request $request)

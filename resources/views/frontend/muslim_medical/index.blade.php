@@ -1,5 +1,5 @@
 @extends('layoutfrontend.master')
-
+@section('title', 'MuslimMedical')
 @section('content')
 <div class="container mt-4">
     <h1 class="text-center fw-bold position-relative pb-2"

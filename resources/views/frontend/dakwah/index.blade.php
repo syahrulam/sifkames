@@ -1,5 +1,5 @@
 @extends('layoutfrontend.master')
-
+@section('title', 'Dakwah')
 @section('content')
 <div class="container mt-4">
     <!-- Judul Halaman -->

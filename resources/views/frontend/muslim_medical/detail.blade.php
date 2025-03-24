@@ -1,5 +1,5 @@
 @extends('layoutfrontend.master')
-
+@section('title', 'Detail MuslimMedical')
 @section('content')
 <div class="container-fluid px-0">
     <!-- Header dengan gambar background -->

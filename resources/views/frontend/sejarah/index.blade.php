@@ -1,5 +1,5 @@
 @extends('layoutfrontend.master')
-
+@section('title', 'Sejarah')
 @section('content')
 <div class="container mt-5">
     <h2 class="text-center mb-4">Sejarah FKAM</h2>

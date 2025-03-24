@@ -3,38 +3,45 @@
         <a href="{{ url('/') }}" class="logo d-flex align-items-center me-auto">
             <h1 class="sitename">FKAM BREBES</h1>
         </a>
+
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li><a href="{{ url('/') }}" class="active">Beranda</a></li>
-                <li class="dropdown">
-                    <a href="{{ url('/about') }}"><span>Tentang</span></a>
+                <li class="dropdown"><a href="{{ url('/about') }}"><span>Tentang</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
                         <li><a href="{{ url('/team') }}">Kepengurusan</a></li>
                         <li><a href="{{ url('/sejarah') }}">Sejarah</a></li>
                     </ul>
                 </li>
+                <li class="dropdown"><a href="{{ url('/activities') }}"><span>Kegiatan</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                        <li><a href="{{ url('/gebermas') }}">Gebermas</a></li>
+                        <li><a href="{{ url('/muslim-medical') }}">Muslim Medical</a></li>
+                        <li><a href="{{ url('/dakwah') }}">Dakwah</a></li>
+                        <li><a href="{{ url('/sar-fkam') }}">SAR FKAM</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ url('/donasi') }}">Donasi</a></li>
+                <li><a href="{{ url('/pricing') }}">Pricing</a></li>
+                <li><a href="{{ url('/blog') }}">Blog</a></li>
                 <li><a href="{{ url('/contact') }}">Contact</a></li>
-                @auth
-                    @if(auth()->user()->role == 'donatur')
-                        <li><a href="{{ url('/donasi') }}">Donasi</a></li>
-                    @endif
-                @else
-                    <li><a href="{{ route('login') }}">Donasi</a></li>
-                @endauth
             </ul>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
+
+        <!-- Tombol Login, Register & Logout - User Icon -->
         <div class="auth-buttons">
             <div class="dropdown">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-person"></i>
+                    <i class="bi bi-person"></i> <!-- User Icon -->
                 </button>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" aria-labelledby="userDropdown">
                     @guest
                         <li><a class="dropdown-item" href="{{ route('register') }}">Register</a></li>
                         <li><a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
                     @else
                         <li>
-                            <form action="{{ route('logout') }}" method="POST">
+                            <form action="{{ route('logout') }}" method="POST" style="display:inline;">
                                 @csrf
                                 <button type="submit" class="dropdown-item btn btn-danger">Logout</button>
                             </form>
