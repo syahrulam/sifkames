@@ -44,5 +44,12 @@
                 <i class="fas fa-clipboard-list"></i> <span>Sarfkam</span>
             </a>
         </li>
+
+        <!-- Menu Donasi -->
+        <li class="{{ request()->is('admin/donasi*') ? 'active' : '' }}">
+         <a class="nav-link" href="{{ route('admin.donasi.index') }}">
+        <i class="fas fa-hand-holding-heart"></i> <span>Donasi</span>
+        </a>
+        </li>
     </ul>
 </aside>

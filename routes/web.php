@@ -8,6 +8,7 @@ use App\Http\Controllers\back\GebermasController;
 use App\Http\Controllers\back\DakwahController;
 use App\Http\Controllers\back\MuslimMedicalController;
 use App\Http\Controllers\back\SarfkamController;
+use App\Http\Controllers\back\DonasiController;
 use App\Http\Controllers\Auth\AuthController;
 use Midtrans\Notification;
 
@@ -112,6 +113,18 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         'destroy' => 'admin.sarfkam.destroy',
     ]);
 });
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::resource('donasi', DonasiController::class)->names([
+        'index' => 'admin.donasi.index',
+        'create' => 'admin.donasi.create',
+        'store' => 'admin.donasi.store',
+        'edit' => 'admin.donasi.edit',
+        'update' => 'admin.donasi.update',
+        'destroy' => 'admin.donasi.destroy',
+    ]);
+});
+
 
 
 

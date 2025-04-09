@@ -9,5 +9,13 @@ class Donasi extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama_pemdonasi', 'jumlah_donasi', 'status'];
+    protected $fillable = [
+        'nama_pemdonasi',
+        'email_pemdonasi',
+        'telepon_pemdonasi',
+        'jumlah_donasi',
+        'metode_pembayaran',
+        'anonim',
+        'status'
+    ];
 }
