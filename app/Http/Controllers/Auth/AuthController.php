@@ -32,8 +32,6 @@ class AuthController extends Controller
                 return redirect()->route('admin'); // Pastikan rute ini benar
             } elseif (Auth::user()->role == 'donatur') {
                 return redirect()->route('donasi'); // Redirect ke halaman donasi
-            } elseif (Auth::user()->role == 'relawan') {
-                return redirect()->route('relawan'); // Sesuaikan dengan kebutuhan
             }
 
             return redirect('/'); // Redirect default jika tidak ada role yang cocok

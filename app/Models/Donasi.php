@@ -16,6 +16,7 @@ class Donasi extends Model
         'jumlah_donasi',
         'metode_pembayaran',
         'anonim',
-        'status'
+        'status',
+        'user_id'  // Jangan lupa untuk menambahkan user_id jika Anda ingin menghubungkan dengan tabel users
     ];
 }

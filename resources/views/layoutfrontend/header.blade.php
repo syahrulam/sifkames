@@ -7,13 +7,13 @@
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li><a href="{{ url('/') }}" class="active">Beranda</a></li>
-                <li class="dropdown"><a href="{{ url('/about') }}"><span>Tentang</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <li class="dropdown"><a href="#"><span>Tentang</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
                         <li><a href="{{ url('/team') }}">Kepengurusan</a></li>
                         <li><a href="{{ url('/sejarah') }}">Sejarah</a></li>
                     </ul>
                 </li>
-                <li class="dropdown"><a href="{{ url('/activities') }}"><span>Kegiatan</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <li class="dropdown"><a href="#"><span>Kegiatan</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
                         <li><a href="{{ url('/gebermas') }}">Gebermas</a></li>
                         <li><a href="{{ url('/muslim-medical') }}">Muslim Medical</a></li>
@@ -22,8 +22,6 @@
                     </ul>
                 </li>
                 <li><a href="{{ url('/donasi') }}">Donasi</a></li>
-                <li><a href="{{ url('/pricing') }}">Pricing</a></li>
-                <li><a href="{{ url('/blog') }}">Blog</a></li>
                 <li><a href="{{ url('/contact') }}">Contact</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -34,12 +32,16 @@
             <div class="dropdown">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-person"></i> <!-- User Icon -->
+                    @auth
+                        {{ auth()->user()->name }} <!-- Menampilkan nama pengguna yang sedang login -->
+                    @endauth
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
                     @guest
                         <li><a class="dropdown-item" href="{{ route('register') }}">Register</a></li>
                         <li><a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
                     @else
+                        <li><span class="dropdown-item">Hello, {{ auth()->user()->name }}</span></li> <!-- Menampilkan nama pengguna -->
                         <li>
                             <form action="{{ route('logout') }}" method="POST" style="display:inline;">
                                 @csrf

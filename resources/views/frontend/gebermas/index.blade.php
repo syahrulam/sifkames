@@ -15,14 +15,15 @@
                     <div class="col-md-6 mb-4">
                         <div class="card h-100 shadow-lg border-0" style="transition: transform 0.2s, box-shadow 0.2s;">
                             <a href="{{ route('gebermas.detail', ['id' => $a->id]) }}" class="text-decoration-none text-dark">
-                                <img src="{{ asset('storage/' . $a->image) }}" class="card-img-top" alt="{{ $a->title }}">
+                                <!-- Pastikan ukuran gambar tidak terlalu besar dan tampil baik di mobile -->
+                                <img src="{{ asset('storage/' . $a->image) }}" class="card-img-top img-fluid" alt="{{ $a->title }}">
                                 <div class="card-body">
                                     <span class="text-primary fw-bold">Gebermas</span>
                                     <h5 class="card-title mt-2">{{ $a->title }}</h5>
                                     <p class="card-text">{{ Str::limit($a->content, 100) }}</p>
                                     <hr>
                                     <div class="d-flex justify-content-between text-muted small">
-                                        <span><i class="bi bi-person"></i> Admin</span>
+                                        <span><i class="bi bi-person"></i> Penulis</span>
                                         <span><i class="bi bi-calendar"></i> {{ \Carbon\Carbon::parse($a->date)->format('d M Y') }}</span>
                                     </div>
                                 </div>

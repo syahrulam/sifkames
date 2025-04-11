@@ -31,25 +31,34 @@ class HalamanUtamaController extends Controller
         return view('frontend.donasi.index', compact('donasi'));
     }
 
-    public function donasikan(Request $request)
-    {
-        $request->validate([
-            'nama_pemdonasi' => 'required|string',
-            'jumlah_donasi' => 'required|numeric',
-        ]);
+public function donasikan(Request $request)
+{
+    // Validasi input dari form
+    $request->validate([
+        'nama_pemdonasi' => 'required|string',
+        'telepon_pemdonasi' => 'required|string',
+        'jumlah_donasi' => 'required|numeric',
+        'metode_pembayaran' => 'required|string',
+    ]);
 
-        // Simpan data donasi
-        $donasi = Donasi::create([
-            'nama_pemdonasi' => $request->nama_pemdonasi,
-            'jumlah_donasi' => $request->jumlah_donasi,
-            'status' => 'pending',
-        ]);
+    // Simpan data donasi dengan status 'pending'
+    $donasi = Donasi::create([
+        'user_id' => auth()->user()->id,  // Menyimpan ID pengguna yang sedang login
+        'nama_pemdonasi' => $request->nama_pemdonasi,
+        'email_pemdonasi' => auth()->user()->email,  // Mengambil email dari pengguna yang sedang login
+        'telepon_pemdonasi' => $request->telepon_pemdonasi,
+        'jumlah_donasi' => $request->jumlah_donasi,
+        'metode_pembayaran' => $request->metode_pembayaran,
+        'anonim' => $request->has('anonim'),  // Menyimpan status anonim jika ada
+        'status' => 'pending', // Status masih pending
+    ]);
 
-        // Buat transaksi dengan Midtrans
-        $snapToken = $this->midtransService->createTransaction($donasi);
+    // Buat transaksi dengan Midtrans
+    $snapToken = $this->midtransService->createTransaction($donasi);
 
-        return view('frontend.donasi.payment', compact('snapToken', 'donasi'));
-    }
+    // Arahkan ke halaman pembayaran dengan membawa token dan data donasi
+    return view('frontend.donasi.payment', compact('snapToken', 'donasi'));
+}
 
     // Halaman Dakwah
     public function dakwah()

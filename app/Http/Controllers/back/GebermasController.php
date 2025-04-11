@@ -21,29 +21,31 @@ class GebermasController extends Controller
         return view('backend.gebermas.create');
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'date' => 'required|date',
-            'content' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+public function store(Request $request)
+{
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'date' => 'required|date',
+        'content' => 'required',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp,bmp|max:2048', // Menambahkan lebih banyak format gambar
+    ]);
 
-        $imagePath = $request->file('image')->store('images', 'public');
+    // Menyimpan file gambar ke storage
+    $imagePath = $request->file('image')->store('images', 'public');
 
-        Gebermas::create([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'date' => $request->date,
-            'content' => $request->content,
-            'image' => $imagePath,
-            'category' => 'Gebermas',
-            'admin' => auth()->user()->name ?? 'Admin',
-        ]);
+    // Menyimpan data ke dalam database
+    Gebermas::create([
+        'title' => $request->title,
+        'slug' => Str::slug($request->title),
+        'date' => $request->date,
+        'content' => $request->content,
+        'image' => $imagePath, // Pastikan path gambar disimpan di sini
+        'category' => 'Gebermas',
+        'admin' => auth()->user()->name ?? 'Admin',
+    ]);
 
-        return redirect()->route('admin.gebermas.index')->with('success', 'Kegiatan berhasil ditambahkan');
-    }
+    return redirect()->route('admin.gebermas.index')->with('success', 'Kegiatan berhasil ditambahkan');
+}
 
     public function edit($id)
     {
@@ -51,38 +53,44 @@ class GebermasController extends Controller
         return view('backend.gebermas.edit', compact('data'));
     }
 
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'date' => 'required|date',
-            'content' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'date' => 'required|date',
+        'content' => 'required',
+        'image' => 'image|mimes:jpeg,png,jpg,gif,webp,bmp|max:2048', // Menambahkan lebih banyak format gambar
+    ]);
 
-        $data = Gebermas::findOrFail($id);
+    $data = Gebermas::findOrFail($id);
 
-        if ($request->hasFile('image')) {
-            if ($data->image) {
-                Storage::disk('public')->delete($data->image);
-            }
-            $imagePath = $request->file('image')->store('images', 'public');
-        } else {
-            $imagePath = $data->image;
+    // Mengecek apakah ada gambar yang diupload
+    if ($request->hasFile('image')) {
+        // Menghapus gambar lama dari storage
+        if ($data->image) {
+            Storage::disk('public')->delete($data->image);
         }
-
-        $data->update([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'date' => $request->date,
-            'content' => $request->content,
-            'image' => $imagePath,
-            'category' => 'Gebermas',
-            'admin' => auth()->user()->name ?? 'Admin',
-        ]);
-
-        return redirect()->route('admin.gebermas.index')->with('success', 'Kegiatan berhasil diperbarui');
+        // Menyimpan gambar baru
+        $imagePath = $request->file('image')->store('images', 'public');
+    } else {
+        // Jika tidak ada gambar baru, path gambar tetap yang lama
+        $imagePath = $data->image;
     }
+
+    // Memperbarui data ke dalam database
+    $data->update([
+        'title' => $request->title,
+        'slug' => Str::slug($request->title),
+        'date' => $request->date,
+        'content' => $request->content,
+        'image' => $imagePath, // Pastikan path gambar disimpan di sini
+        'category' => 'Gebermas',
+        'admin' => auth()->user()->name ?? 'Admin',
+    ]);
+
+    return redirect()->route('admin.gebermas.index')->with('success', 'Kegiatan berhasil diperbarui');
+}
+
 
     public function destroy($id)
     {

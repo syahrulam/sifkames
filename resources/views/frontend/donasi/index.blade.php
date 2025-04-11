@@ -1,19 +1,20 @@
 @extends('layoutfrontend.master')
 @section('title', 'Donasi')
 @section('content')
+
 <div class="container mt-5">
     <div class="card shadow-lg p-4">
-        <h2 class="text-center mb-4">Form Donasi</h2>
+        <h2 class="text-center mb-4">Formulir Donasi</h2>
         <form action="{{ route('donasi.proses') }}" method="POST">
             @csrf
             <!-- Informasi Pendonasi -->
             <div class="mb-3">
                 <label for="nama_pemdonasi" class="form-label">Nama Pemdonasi</label>
-                <input type="text" class="form-control" id="nama_pemdonasi" name="nama_pemdonasi" required>
+                <input type="text" class="form-control" id="nama_pemdonasi" name="nama_pemdonasi" value="{{ auth()->user()->name }}" required readonly>
             </div>
             <div class="mb-3">
                 <label for="email_pemdonasi" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email_pemdonasi" name="email_pemdonasi" required>
+                <input type="email" class="form-control" id="email_pemdonasi" name="email_pemdonasi" value="{{ auth()->user()->email }}" required readonly>
             </div>
             <div class="mb-3">
                 <label for="telepon_pemdonasi" class="form-label">Nomor Telepon</label>
@@ -46,4 +47,5 @@
         </form>
     </div>
 </div>
+
 @endsection

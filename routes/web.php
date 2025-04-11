@@ -18,8 +18,17 @@ Route::get('/', [HalamanUtamaController::class, 'index']);
 
 // Menu Donasi (Dibatasi untuk donatur)
 Route::middleware(['auth', 'donatur'])->group(function () {
+    // Halaman Donasi
     Route::get('/donasi', [HalamanUtamaController::class, 'donasi'])->name('donasi');
+    
+    // Proses Donasi
     Route::post('/donasikan', [HalamanUtamaController::class, 'donasikan'])->name('donasi.proses');
+
+    // Halaman Konfirmasi Pembayaran
+    Route::get('/donasi/{id}/confirm', [DonasiController::class, 'showPaymentConfirmation'])->name('donasi.confirm');
+    
+    // Konfirmasi Pembayaran setelah Button ditekan
+    Route::post('/donasi/{id}/payment', [DonasiController::class, 'confirmPayment'])->name('donasi.confirmPayment');
 });
 
 // Midtrans Notification
