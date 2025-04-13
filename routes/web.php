@@ -131,6 +131,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         'edit' => 'admin.donasi.edit',
         'update' => 'admin.donasi.update',
         'destroy' => 'admin.donasi.destroy',
+        'riwayat' => 'admin.donasi.riwayat',
+        'kelola' => 'admin.donasi.kelola',
     ]);
 });
 

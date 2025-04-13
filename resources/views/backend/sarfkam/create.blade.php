@@ -6,10 +6,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Tambah Kegiatan Gebermas</h4>
+                    <h4>Tambah Kegiatan sarfkam</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.gebermas.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.sarfkam.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-3">

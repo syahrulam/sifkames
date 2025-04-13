@@ -6,7 +6,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Daftar Kegiatan Gebermas</h4>
+                    <h4>Daftar Kegiatan sarfkam</h4>
                 </div>
                 <div class="card-body">
 
@@ -14,7 +14,7 @@
 
                     <!-- Tombol Tambah Kegiatan -->
                     <div class="d-flex justify-content-end mb-3">
-                        <a href="{{ route('admin.gebermas.create') }}" class="btn btn-primary">Tambah Kegiatan</a>
+                        <a href="{{ route('admin.sarfkam.create') }}" class="btn btn-primary">Tambah Kegiatan</a>
                     </div>
                     <!-- Notifikasi Sukses -->
                     @if(session('success'))
@@ -41,10 +41,10 @@
                                     </td>
                                     <td>
                                         <!-- Tombol Edit -->
-                                        <a href="{{ route('admin.gebermas.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                        <a href="{{ route('admin.sarfkam.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
                                         <!-- Form Tombol Delete -->
-                                        <form action="{{ route('admin.gebermas.destroy', $item->id) }}" method="POST" style="display:inline-block;" id="delete-form-{{ $item->id }}">
+                                        <form action="{{ route('admin.sarfkam.destroy', $item->id) }}" method="POST" style="display:inline-block;" id="delete-form-{{ $item->id }}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $item->id }})">Hapus</button>

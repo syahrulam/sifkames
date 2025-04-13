@@ -4,6 +4,9 @@ namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\SarFkam;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class SarfkamController extends Controller
 {
@@ -12,7 +15,8 @@ class SarfkamController extends Controller
      */
     public function index()
     {
-        //
+        $data = SarFkam::latest()->get();
+        return view('backend.sarfkam.index', compact('data'));
     }
 
     /**
